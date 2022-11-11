@@ -1,0 +1,12 @@
+server:
+  port: 8070 #유레카 서버 포트
+eureka:
+  instance:
+    hostname: eurekaserver #유레카인스턴스 호스트 이름
+  client:
+    registerWithEureka: false #config server 가 유레카서비스에 등록하지 않도록 지시
+    fetchRegistry: false #config server 가 캐시 레지스트리 정보를 로컬에 저장하지 않도록 지시
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    waitTimeInMsWhenSyncEmpty: 10

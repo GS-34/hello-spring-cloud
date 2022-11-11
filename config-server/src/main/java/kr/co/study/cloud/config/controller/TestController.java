@@ -1,4 +1,4 @@
-package kr.co.study.cloud.configserver.controller;
+package kr.co.study.cloud.config.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

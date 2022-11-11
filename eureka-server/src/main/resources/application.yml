@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8071
+ribbon:
+  eureka:
+    enabled: false
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
