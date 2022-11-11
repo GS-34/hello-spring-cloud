@@ -4,4 +4,5 @@ include 'api-server'
 include 'eureka-server'
 include 'licensing-service'
 include 'organization-service'
+include 'common'
 

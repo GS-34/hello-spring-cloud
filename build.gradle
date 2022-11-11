@@ -7,7 +7,7 @@ plugins {
 group 'kr.co.study.cloud'
 version '1.0-SNAPSHOT'
 
-subprojects{
+subprojects {
 
     apply plugin: "org.springframework.boot"
     apply plugin: "io.spring.dependency-management"
@@ -20,6 +20,8 @@ subprojects{
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        compileOnly 'org.projectlombok:lombok:1.18.24'
+        annotationProcessor 'org.projectlombok:lombok:1.18.24'
     }
     ext {
         set('springCloudVersion', "2021.0.4")
@@ -28,5 +30,11 @@ subprojects{
         imports {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
+    }
+}
+
+project(':licensing-service') {
+    dependencies {
+        implementation project(':common')
     }
 }
