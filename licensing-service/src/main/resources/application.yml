@@ -13,3 +13,26 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8070/eureka/
+resilience4j:
+  circuitbreaker:
+    instances:
+      circuitLicenseService:
+        register-health-indicator: true
+        ring-buffer-size-in-closed-state: 5 #닫힌 상태일때 링비트 버퍼의 크기
+        ring-buffer-size-in-half-open-state: 5 #회로차단기가 반열린 상태일때 링비트 버퍼의 크기
+        wait-duration-in-open-state: 10s # 열린상태에서 반열린상태로 변경하기전 대기시간
+        slow-call-duration-threshold: 1s #느린호출로 간주할 시간값
+        slow-call-rate-threshold: 50 #느린 호출의 임계치
+        failure-rate-threshold: 80 #실패 호출의 임계치
+  bulkhead:
+    instances:
+      bulkheadSemaphore:
+        max-concurrent-calls: 1 #최대로 허용할 병렬 실행수
+        max-wait-duration: 0s #포화상태일때 진입하려는 쓰레드를 블로킹할 최대 시간
+  ratelimiter:
+    instances:
+      limiterLicenseService:
+        limit-refresh-period: 30s #설정시간
+        limit-for-period: 3 #설정 시간내 허용 가능한 수
+        timeout-duration: 0 #호출 스레드가 rateLimit에 대해서 접근 허가를 얻기위해서 대기하는 시간
+
